@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<h3> ADD PROBLEM</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+  <br>
+
+  <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+</form>
+
+</body>
+</html> 
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <nav
+      class="bg-white border-gray-200 border-b-2 shadow-xl"
+      style="border-color: #9f282c"
+    >
+      <div class="flex items-center  justify-center my-2 flex-grow">
+        <div>
+          <img src="{% static 'helpdesk/images/logo.png' %}" alt="GITAM Logo" class="h-10 sm:h-16" />
+        </div>
+      </div>
+    </nav><br><br>
+  <div class="min-h-screen flex items-center justify-center">
+    <div class="max-w-md w-full p-6 space-y-6 bg-white rounded-lg shadow-lg">
+      <h3 class="text-2xl font-semibold text-center text-red-700">ADD PROBLEM</h3>
+      <form method="post">
+        {% csrf_token %}
+        <div class="mb-4">
+          <label for="name" class="block text-black-600">Name</label>
+          <input type="text" id="name" name="name" class="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:border-blue-500" required>
+        </div>
+        <div class="mb-4">
+          <label for="regnum" class="block text-black-600">Regnum</label>
+          <input type="text" id="regnum" name="regnum" class="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:border-blue-500" required>
+        </div>
+        <div class="mb-4">
+          <label for="phno" class="block text-black-600">Phno</label>
+          <input type="text" id="phno" name="phno" class="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:border-blue-500" required>
+        </div>
+        <div class="mb-4">
+          <label for="bhawan" class="block text-black-600">Bhawan</label>
+          <input type="text" id="bhawan" name="bhawan" class="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:border-blue-500" required>
+        </div>
+        <div class="mb-4">
+          <label for="rmnum" class="block text-black-600">Room No</label>
+          <input type="text" id="rmnum" name="rmnum" class="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:border-blue-500" required>
+        </div>
+        <div class="mb-4">
+          <label for="problem" class="block text-black-600">Problem</label>
+          <input type="text" id="problem" name="problem" class="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:border-blue-500" required>
+        </div>
+        <div class="mb-4">
+          <label for="description" class="block text-black-600">Description</label>
+          <textarea id="description" name="description" rows="5" class="w-full border border-gray-300 px-3 py-2 rounded focus:outline-none focus:border-blue-500" required></textarea>
+        </div>
+        <div class="mb-4">
+          <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html> -->

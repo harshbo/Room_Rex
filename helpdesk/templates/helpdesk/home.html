@@ -1,0 +1,169 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .custom-border {
+      border-bottom-color: #9F282C;
+    }
+    .container {
+        width: auto;
+        margin: 0 auto;
+      }
+
+      .progressbar {
+        display: flex;
+        justify-content: center;
+        overflow-x: auto;
+        margin: auto;
+      }
+
+      .progressbar div {
+        list-style-type: none;
+        width: 90px;
+        float: left;
+        font-size: 12px;
+        position: relative;
+        text-align: center;
+        color: #7d7d7d;
+      }
+
+      .progressbar div:before {
+        width: 20px;
+        height: 20px;
+        content: "";
+        line-height: 30px;
+        border: 2px solid #7d7d7d;
+        display: block;
+        text-align: center;
+        margin: auto;
+        border-radius: 50%;
+        background-color: white;
+      }
+
+      .progressbar div:after {
+        width: 100%;
+        height: 3px;
+        content: "";
+        position: absolute;
+        background-color: #7d7d7d;
+        top: 9px;
+        left: -50%;
+        z-index: -1;
+      }
+
+      .progressbar div:first-child:after {
+        content: none;
+      }
+
+      .progressbar .active:before {
+        border-color: #55b776;
+        background-color: #55b776;
+      }
+
+      .progressbar .active + div:after {
+        background-color: #55b776;
+      }
+
+      .progressbar .notactive:before {
+        border-color: red;
+        background-color: red;
+      }
+
+      .progressbar .notactive + div:after {
+        background-color: red;
+      }
+
+      .progressbar .pending:before {
+        border-color: yellow;
+        background-color: yellow;
+      }
+
+      .progressbar .pending + div:after {
+        background-color: yellow;
+      }
+  </style>
+</head>
+
+<body>
+    <nav
+      class="bg-white border-gray-200 border-b-2 shadow-xl"
+      style="border-color: #9f282c"
+    >
+      <div class="flex items-center sm:justify-center my-2 sm:flex-grow">
+        <div>
+          <img src="https://gu.gitam.edu/assets/images/about/logos/gitam-logo2.png" alt="" class="h-10 sm:h-16" />
+        </div>
+      </div>    
+    </nav>
+      <div class="mt-10">
+        <h1 class=" text-2xl sm:text-4xl font-bold mt-2 text-center">Check status of your problem</h1>
+                    <form class="p-2 mt-8 sm:mt-12 space-y-4 sm:space-y-5 mr-5" method="post">
+                      {% csrf_token %}
+                        <div class="flex justify-center items-center">
+                            <input
+                                style="border-color: #9F282C;"
+                                class="w-full sm:w-96 h-8 sm:h-12 px-3 py-2 border placeholder-text-black"
+                                type="text"
+                                placeholder="Registration Number"
+                                name="regnum"
+                                id="regnum" />
+                            <button
+                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 sm:py-2 px-3 sm:px-4 rounded ml-2 focus:outline-none focus:shadow-outline"
+                                type="submit" style="background-color: #9F282C;">
+                                Check
+                            </button>
+                        </div>
+                    </form>
+
+                  {% if problems %}
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                      <div class="py-2">
+                        <div class=" px-4 sm:px-8 py-2 overflow-x-auto">
+                          <div class="inline-block min-w-full shadow-md overflow-hidden">
+                            <table class="min-w-full leading-normal border-spacing-y-4">
+                              <thead>
+                                <tr class="text-lg">
+                                    <th
+                                        class="px-5 py-5 text-left  font-semibold text-black  tracking-wider w-60">Name</th>
+                                    <th
+                                        class="px-5 py-5 text-left  font-semibold text-black tracking-wider w-60">Reg
+                                        Number</th>
+                                    <th
+                                        class="px-5 py-5 text-left  font-semibold text-black tracking-wider w-60">Phone Number</th>
+                                        <th
+                                        class="px-5 py-5 text-left font-semibold text-black tracking-wider w-60">Room Number</th>
+                                    <th
+                                        class="px-5 py-5 text-left font-semibold text-black  tracking-wider w-60">View</th>
+                                </tr>
+                              </thead>
+                              <tbody class="text-md">
+                                {% for problem in problems %}
+                                  <tr class="shadow-xl table-row-gap shadow-md">
+                                      <td class="border-l-4 border-blue-900 px-5 py-5 w-60">{{ problem.name }}</td>
+                                      <td class="px-5 py-5  w-60">{{ problem.regnum }}</td>
+                                      <td class="px-5 py-5  w-60">{{ problem.phno }}</td>
+                                      <td class="px-5 py-5  w-60">{{ problem.bhawan }} {{ problem.rmnum }}</td>
+                                      <td class="px-5 py-5  w-60">
+                                        <a href="{% url 'problem' problem.id %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 sm:py-2 px-3 sm:px-4 rounded ml-2 focus:outline-none focus:shadow-outline">View</a>
+                                      </td>
+                                  </tr>
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+        </div>
+</body>
+
+</html>

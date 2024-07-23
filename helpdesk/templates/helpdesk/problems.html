@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+    /* Center the content vertically and horizontally */
+    .center-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* Make the body take up the full viewport height */
+    }
+  </style>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problems</title>
+  <!-- Add a link to your Tailwind CSS stylesheet -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+  <nav
+      class="bg-white border-gray-200 border-b-2 shadow-xl"
+      style="border-color: #9f282c"
+    >
+      <div class="flex items-center  justify-center my-2 flex-grow">
+        <div>
+          <img src="{% static 'helpdesk/images/logo.png' %}" alt="GITAM Logo" class="h-10 sm:h-16" />
+        </div>
+      </div>
+    </nav>
+  <div class="center-content">
+  
+  <h1 class="text-2xl font-bold mb-4">All Problems</h1>
+  {% for problem in problems %}
+  <div class="w-60 p-4 bg-white border border-white-800 rounded-lg shadow hover:bg-gray-100 mb-4">
+    <a href="{% url 'problem' problem.id %}" class="text-blue-800 font-bold">{{ problem.name }} - {{ problem.rmnum }}</a>
+  </div>
+  {% endfor %}
+  </div>
+</body>
+</html>
